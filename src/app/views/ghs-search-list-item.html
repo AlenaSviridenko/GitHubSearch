@@ -1,0 +1,26 @@
+<div class="card-header custom-header-size">
+  <span>Repository name: <b>{{repo.name}}</b></span>
+</div>
+<div class="container card-body">
+  <div class="row">
+    <div class="col-md-3">
+      <img src="{{repo.ownerAvatar}}" class="img-thumbnail avatar" alt="{{repo.fullName}}">
+    </div>
+    <div class="col-md-9">
+      <div>
+        <span>{{repo.description}}</span>
+      </div>
+      <button type="button"
+              class="btn btn-sm btn-outline-secondary"
+              (click)="getBranches()">
+        View branches
+        <i *ngIf="loading && !repo.branches.length" class="fa fa-spinner fa-spin"></i>
+      </button>
+      <div>
+        <ul>
+          <li *ngFor="let name of repo.branches">{{name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

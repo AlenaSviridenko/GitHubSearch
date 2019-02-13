@@ -1,0 +1,16 @@
+<div class="container no-margin">
+  <div class="row">
+    <div class="input-group col-md-5 col-xs-5">
+      <input type="text" class="form-control" value="{{searchTerm}}" (keyup)="onKey($event)" (keyup.enter)="searchRepos()"/>
+      <div class="input-group-append stick-to-input">
+        <span class="input-group-text">
+          <i *ngIf="!loading" class="fa fa-search"></i>
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+        </span>
+      </div>
+    </div>
+    <div class="col-md-7 col-xs-7">
+      <ghs-search-list [list]="repositoriesList" (searchBranches)="searchBranches($event)"></ghs-search-list>
+    </div>
+  </div>
+</div>

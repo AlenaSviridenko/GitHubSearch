@@ -1,0 +1,8 @@
+<div *ngIf="repoList && repoList.length">
+  <div *ngFor="let repo of repoList; index as i" class="card">
+    <ghs-search-list-item
+      [index]="i"
+      [repo]="repo"
+      (findBranches)="expandBranches($event)"></ghs-search-list-item>
+  </div>
+</div>

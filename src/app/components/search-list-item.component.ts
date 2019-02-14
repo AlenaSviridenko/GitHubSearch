@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { SearchListComponent } from './search-list.component';
 import { IRepository } from '../interfaces';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'ghs-search-list-item',
@@ -9,19 +10,33 @@ import { IRepository } from '../interfaces';
 })
 
 export class SearchListItemComponent extends SearchListComponent {
-  @Input() index: number;
   @Input() repo: IRepository;
-  @Output() findBranches = new EventEmitter<any>();
 
   public loading: boolean;
+  public error: string;
 
-  constructor() {
+  constructor(
+    private searchService: SearchService
+  ) {
     super();
-    this.loading = false;
   }
 
-  getBranches() {
+  searchBranches() {
     this.loading = true;
-    this.findBranches.emit({url: this.repo.branchesUrl, i: this.index});
+    this.searchService.getBranches(this.repo.branchesUrl)
+      .then((result) => {
+        this.loading = false;
+        this.repo.branches = result;
+      })
+      .catch((error) => this.handleError(error));
+  }
+
+  handleError(error) {
+    this.loading = false;
+    this.error = error;
+
+    setTimeout(() => {
+      this.error = '';
+    }, 2000);
   }
 }

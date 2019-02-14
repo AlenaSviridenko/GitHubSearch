@@ -1,16 +1,36 @@
 <div class="container no-margin">
   <div class="row">
-    <div class="input-group col-md-5 col-xs-5">
-      <input type="text" class="form-control" value="{{searchTerm}}" (keyup)="onKey($event)" (keyup.enter)="searchRepos()"/>
-      <div class="input-group-append stick-to-input">
-        <span class="input-group-text">
-          <i *ngIf="!loading" class="fa fa-search"></i>
-          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
-        </span>
+    <div class="col-md-5 col-xs-5 space-between">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          value="{{searchTerm}}"
+          (keyup)="onKey($event)"
+          (keyup.enter)="searchRepos()"
+          ngbTooltip="Press Enter to trigger search"
+          placement="right"
+          (click)="t.toggle()"
+          #t="ngbTooltip"
+        />
+        <div class="input-group-append input-size">
+          <span class="input-group-text">
+            <i *ngIf="!loading" class="fa fa-search"></i>
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          </span>
+        </div>
       </div>
+        <ngb-alert *ngIf="error" [type]="'danger'" [dismissible]="false">
+          {{error}}
+        </ngb-alert>
     </div>
     <div class="col-md-7 col-xs-7">
-      <ghs-search-list [list]="repositoriesList" (searchBranches)="searchBranches($event)"></ghs-search-list>
+      <ghs-search-list [list]="repositoriesList"></ghs-search-list>
     </div>
+  </div>
+  <div class="go-to-top">
+    <a href="#pageTop">
+      <i class="fas fa-angle-up"></i>
+    </a>
   </div>
 </div>

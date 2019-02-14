@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { IRepository } from '../interfaces';
 import { BehaviorSubject } from 'rxjs/index';
@@ -9,8 +9,6 @@ import { BehaviorSubject } from 'rxjs/index';
 })
 
 export class SearchListComponent implements OnInit, OnDestroy {
-  @Output() searchBranches = new EventEmitter<any>();
-
   public repoSubscriber = new BehaviorSubject<IRepository[]>([]);
   public repoList: IRepository[];
 
@@ -26,10 +24,6 @@ export class SearchListComponent implements OnInit, OnDestroy {
       .subscribe(x => {
         this.repoList = x;
       });
-  }
-
-  expandBranches({url, i}) {
-    this.searchBranches.emit({ url, i });
   }
 
   ngOnDestroy() {

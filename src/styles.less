@@ -1,10 +1,13 @@
+@icon-size: 30px;
+@standard-margin: 10px;
+
 .avatar {
   max-width: 140px;
   max-height: 140px;
 }
 
 .search-page {
-  margin: 10px;
+  margin: @standard-margin;
 }
 
 div.no-margin {
@@ -14,9 +17,50 @@ div.no-margin {
 
 .custom-header-size {
   height: 40px;
-  padding-bottom: 10px;
+  padding-bottom: @standard-margin;
 }
 
-.stick-to-input {
+.input-size {
   max-height: 38px;
+}
+
+.space-between {
+  margin-bottom: @standard-margin;
+}
+
+.branches-section {
+  margin-top: @standard-margin;
+
+  .branches-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+.go-to-top {
+  font-size: @icon-size;
+  position: fixed;
+  bottom: @icon-size;
+  width: @icon-size;
+  height: @icon-size;
+  text-align: center;
+
+
+  @media (max-width: 768px) {
+    background-color: rgba(cornflowerblue, 0.4);
+    border-radius: 50%;
+
+    a {
+      display: grid;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.description-section {
+  max-height: 150px;
+  overflow-y: auto;
 }

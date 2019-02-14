@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SearchService } from '../services/search.service';
-import {IRepository} from '../interfaces';
+import { IRepository } from '../interfaces';
 
 @Component({
   selector: 'ghs-search-box',
@@ -11,6 +11,7 @@ import {IRepository} from '../interfaces';
 export class SearchBoxComponent {
 
   public searchTerm: string;
+  public error: string;
   public loading: boolean;
   public repositoriesList: IRepository[] = [];
 
@@ -19,6 +20,7 @@ export class SearchBoxComponent {
   ) {}
 
   onKey(e) {
+    this.toggleError();
     this.searchTerm = e.target.value;
 
     if (!this.searchTerm) {
@@ -36,27 +38,16 @@ export class SearchBoxComponent {
         this.repositoriesList = result;
       })
       .catch((error) => {
-
-      });
-  }
-
-  searchBranches({ url, i }) {
-    this.searchService.getBranches(url)
-      .then((result) => {
-        this.repositoriesList = [
-          ...this.repositoriesList,
-           this.repositoriesList.map((repo, index) => {
-            if (index === i) {
-              repo.branches = result;
-            }
-
-            return repo;
-          })
-        ] as IRepository[];
+        this.toggleLoading();
+        this.toggleError(error);
       });
   }
 
   toggleLoading() {
     this.loading = !this.loading;
+  }
+
+  toggleError(error: string = '') {
+    this.error = error;
   }
 }

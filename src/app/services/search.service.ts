@@ -16,6 +16,7 @@ export class SearchService {
       (result, resolve, reject) => {
         if (result.total_count === 0) {
           reject('No repositories found');
+          return;
         }
 
         resolve(this.mapRepositories(result.items));
@@ -27,8 +28,8 @@ export class SearchService {
     return this.promise(
       this.apiService.get(url),
       (result, resolve, reject) => {
-        if (result.total_count === 0) {
-          reject('No repositories found');
+        if (!result.length) {
+          reject('No branches found');
         }
 
         resolve(result.map((branch) => branch.name));

@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { SearchBoxComponent } from './components/search-box.component';
-import { SearchPageComponent } from './components/search-page.component';
 import { SearchListComponent } from './components/search-list.component';
 import { SearchListItemComponent } from './components/search-list-item.component';
 
@@ -17,7 +16,6 @@ import { ApiService } from './services/api.service';
   declarations: [
     AppComponent,
     SearchBoxComponent,
-    SearchPageComponent,
     SearchListComponent,
     SearchListItemComponent
   ],

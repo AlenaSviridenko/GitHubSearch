@@ -7,18 +7,19 @@
       <img src="{{repo.ownerAvatar}}" class="img-thumbnail avatar" alt="{{repo.fullName}}">
     </div>
     <div class="col-md-9">
-      <div>
+      <div class="description-section">
         <span>{{repo.description}}</span>
       </div>
-      <button type="button"
-              class="btn btn-sm btn-outline-secondary"
-              (click)="getBranches()">
+      <button type="button" class="btn btn-sm btn-outline-secondary" (click)="searchBranches()">
         View branches
         <i *ngIf="loading && !repo.branches.length" class="fa fa-spinner fa-spin"></i>
       </button>
-      <div>
-        <ul>
-          <li *ngFor="let name of repo.branches">{{name}}</li>
+      <div class="branches-section">
+        <ngb-alert *ngIf="error" [type]="'danger'" [dismissible]="false">
+          {{error}}
+        </ngb-alert>
+        <ul class="list-group list-group-flush branches-list">
+          <li *ngFor="let name of repo.branches" class="list-group-item">{{name}}</li>
         </ul>
       </div>
     </div>

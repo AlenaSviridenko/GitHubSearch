@@ -4,5 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## How to run app
 
-* Run `npm install` from root folder
+* Run `npm install` from the root folder
 * Run `ng serve` to start server. Navigate to `http://localhost:4200/` to view app
+
+## How to run tests
+
+* Run `ng test` from the root folder

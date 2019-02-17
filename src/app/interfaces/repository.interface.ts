@@ -1,7 +1,7 @@
 export interface IRepository {
   id: number;
   name: string;
-  full_name: string;
+  fullName: string;
   ownerAvatar: string;
   branchesUrl: string;
   branches?: string[];

@@ -6,12 +6,9 @@
           type="text"
           class="form-control"
           value="{{searchTerm}}"
+          placeholder="Press Enter to trigger search"
           (keyup)="onKey($event)"
           (keyup.enter)="searchRepos()"
-          ngbTooltip="Press Enter to trigger search"
-          placement="right"
-          (click)="t.toggle()"
-          #t="ngbTooltip"
         />
         <div class="input-group-append input-size">
           <span class="input-group-text">
